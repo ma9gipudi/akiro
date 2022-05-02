@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <p className={styles.description}>
           Connect your MetaMask Wallet to get started
         </p>
-        <StyledButton name="Connect" href='/user'></StyledButton>
+        <StyledButton  href='/user'>Connect</StyledButton>
       </main>
 
       <footer className={styles.footer}></footer>
