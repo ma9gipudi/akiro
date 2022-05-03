@@ -19,7 +19,7 @@ const StyledButton = (props: any) => {
   `;
   return (
     <div>
-      <Button href= {props.href}  rel="noopener" primary="true">
+      <Button href= {props.href} onClick={props.onClick} rel="noopener" primary="true"> 
         {props.children}
       </Button>
     </div>
