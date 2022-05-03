@@ -1,4 +1,4 @@
-import { collections, connectToDatabase } from '../../../db/mongoCollections';
+import { collections, connectToDatabase } from '../../../db/mongo.service';
 import Company from '../../../models/Company';
 import { ObjectId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';

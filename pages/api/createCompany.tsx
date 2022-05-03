@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { collections, connectToDatabase } from '../../db/mongoCollections';
+import { collections, connectToDatabase } from '../../db/mongo.service';
 import Company from '../../models/Company';
 
 function getErrorMessage(error: unknown) {
