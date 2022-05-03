@@ -1,6 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export default class Company {
-	name: string;
-	constructor(name: string) {
-		this.name = name;
-	}
+  constructor(public name: string, public id?: ObjectId) {}
 }
