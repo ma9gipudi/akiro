@@ -1,16 +1,17 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { NextPage } from 'next';
-import { Fragment, Key, useEffect, useState } from 'react';
-import AppHead from '../../components/head';
+import { Fragment, useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import StyledButton from '../../components/styledbutton';
 import Company from '../../models/Company';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Container } from 'react-bootstrap';
 
 const UserPage: NextPage = () => {
   const [companies, setCompanies] = useState([]);
-
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log(`${JSON.stringify(user)} ${isAuthenticated}`);
   async function onCreateHandler() {
     await fetch('/api/createCompany', {
       method: 'POST',
@@ -62,8 +63,8 @@ const UserPage: NextPage = () => {
   }
 
   return (
+    !isAuthenticated ? <div>Loading..</div> : 
     <Fragment>
-      <AppHead></AppHead>
       <Container>{Companies}</Container>
     </Fragment>
   );

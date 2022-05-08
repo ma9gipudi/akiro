@@ -15,7 +15,7 @@ export default async function handler(
         .toArray()) as unknown as Company[];
       response.status(200).send(companies);
     } catch (error) {
-	    response.status(500).send("Unable to get companies")
+      response.status(500).send('Unable to get companies');
     }
   } else {
     throw new Error('Unsupported method');
