@@ -1,8 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { Box, Button, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import LoginButton from '../components/loginButton';
-import StyledButton from '../components/styledbutton';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -13,19 +13,25 @@ const Home: NextPage = () => {
     router.replace('/user');
   }
 
-  return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.title}></h1>
-        <p className={styles.description}>Connect your MetaMask Wallet to get started</p>
-        <StyledButton href="/user">Connect</StyledButton>
+  const signUpHandler = () => {
+    router.replace('/signup');
+  };
 
-        <p className={styles.description}>or</p>
-        <LoginButton>Sign Up</LoginButton>
+  return (
+    <Box>
+      <main className={styles.main}>
+        <p className={styles.description}>
+          <Button variant="text" sx={{ 'text-transform': 'none' }}
+            onClick={signUpHandler}>
+            <Typography sx={{ 'font-size': '1.5rem' }}>Sign up</Typography>
+          </Button>
+          to get started
+        </p>
+        <LoginButton></LoginButton>
       </main>
 
       <footer className={styles.footer}></footer>
-    </div>
+    </Box>
   );
 };
 

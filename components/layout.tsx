@@ -1,18 +1,19 @@
+import { useAuth0 } from '@auth0/auth0-react';
+import { Box, Stack } from '@mui/material';
 import { Fragment } from 'react';
-import Container from 'react-bootstrap/Container';
-import AuthNavBar from './authnavigationbar';
-import NavigationBar from './navigationbar';
+import Navbar from './navigationbar';
+import Sidebar from './sidebar';
+
 const Layout = (props: any) => {
-  const authenticated = true;
+  const { isAuthenticated } = useAuth0();
   return (
-    <div>
-      {!authenticated ? (
-        <NavigationBar></NavigationBar>
-      ) : (
-        <AuthNavBar></AuthNavBar>
-      )}
-      <Container>{props.children}</Container>
-    </div>
+    <Box>
+      {isAuthenticated ? <Navbar /> : <Fragment />}
+      <Stack direction="row" justifyContent="space-evenly" spacing={2}>
+        {isAuthenticated ? <Sidebar /> : <Fragment />}
+        <Box flex={3}>{props.children}</Box>
+      </Stack>
+    </Box>
   );
 };
 

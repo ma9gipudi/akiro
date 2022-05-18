@@ -1,13 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { Typography } from '@mui/material';
 import { NextPage } from 'next';
 import { Fragment, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import StyledButton from '../../components/styledbutton';
 import Company from '../../models/Company';
-
 const UserPage: NextPage = () => {
   const [companies, setCompanies] = useState([]);
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -33,39 +28,12 @@ const UserPage: NextPage = () => {
   }, []);
 
   let Companies = <span></span>;
-  if (companies.length > 0) {
-    Companies = (
-      <Row xs={1} md={2} className="g-4">
-        {companies.map((c: Company) => (
-          <Col key={c.id}>
-            <Card>
-              <Card.Img variant="top" />
-              <Card.Body>
-                <Card.Title>{c.name}</Card.Title>
-                <Card.Text>Company details</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Create another Company</Card.Title>
-              <Card.Text></Card.Text>
-              <StyledButton onClick={onCreateHandler} primary>
-                Go!
-              </StyledButton>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    );
-  }
 
-  return (
-    !isAuthenticated ? <div>Loading..</div> : 
+  return !isAuthenticated ? (
+    <div>Loading..</div>
+  ) : (
     <Fragment>
-      <Container>{Companies}</Container>
+      <Typography>{`Welcome ${user?.email}`} </Typography>
     </Fragment>
   );
 };
